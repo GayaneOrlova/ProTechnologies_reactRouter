@@ -6,25 +6,23 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
+
   
-import {
-  PageOne,
-  PageTwo }
-from './Components/Pages';
-  
-import { MainPage } from './MainPage';
+import { Header } from './Components/Header';
+// import {MainPage} from './MainPage';
+import { Login } from './Components/Forms/Login';
 
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<MainPage/> } >
-          <Route index element={<div>No page is selected.</div> } />
-          <Route path="one" element={<PageOne />} />
-          <Route path="two" element={<PageTwo />} />
-        </Route>
-      </Routes>
+    <Header/>
+    {/* <Login/> */}
+    <Routes>
+      <Route index element={<div>No page is selected.</div> } />
+      <Route path="login" element={<Login/>} />
+    </Routes>
+      
     </BrowserRouter>
   );
 }

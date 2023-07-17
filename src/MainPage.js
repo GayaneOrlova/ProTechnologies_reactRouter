@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
+
+
+
+
 export const MainPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -15,7 +19,7 @@ export const MainPage = () => {
         <ul>
           <li>
             <button onClick={() => navigate('one', { replace: false })}>
-              Page One
+              Log in
             </button>
           </li>
           <li>
