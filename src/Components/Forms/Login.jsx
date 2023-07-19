@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { useState } from 'react';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import useAuthContext from './useAuthContext.js'
+
 import { Button, Form, Input } from 'antd';
 import { CloseCircleOutlined } from "@ant-design/icons";
 
@@ -43,9 +47,6 @@ const Login = () => {
               Log in
             </Button>
           </Form.Item>
-
-          
-
         </Form>
       </div>
     </>

@@ -3,7 +3,7 @@
 // const style: React.CSSProperties = { background: '#0092ff', padding: '8px 0' };
 
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { EditOutlined } from '@ant-design/icons';
 import { Card } from 'antd';
@@ -13,6 +13,7 @@ const { Meta } = Card;
 const ProductCard = () => {
   return (
     <>
+    <Link to='project/id/'>
       <Card
         style={{ width: 300 }}
         cover={
@@ -30,6 +31,7 @@ const ProductCard = () => {
           description="Technologies used:"
         />
       </Card>
+      </Link>
 
     </>
   )
