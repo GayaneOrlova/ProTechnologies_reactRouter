@@ -1,15 +1,21 @@
-// // import { Item} from '../store/todoSlice';
-// import axios from './instance';
-// import React from 'react';
-// import App from '../App';
-// import instance from './instance';
-
+import { User } from "../store/userSlice"
+import axios from './instance';
+import React from 'react';
+import App from '../App';
+import instance from './instance';
+import { setUser } from "../store/userSlice";
 
 // type Props = {
-//   item: Item;
+//   item: User;
 //   id: string;
-//   // changeValue
 // };
+
+export const postUser = ({email, password}: User) => {
+  return axios.post(`/login/`, {email, password})
+}
+
+
+
 
 // export const getAllTodos = () => {
 //   return axios.get<Item[]>('/todos/');
@@ -45,6 +51,3 @@
 //   return axios.post<Item[]>(`/todos/update/nochecked/`)
 // }
 
-// export const postTodo = (value: string) => {
-//   return axios.post<Item>(`/todos/`, {value})
-// }
