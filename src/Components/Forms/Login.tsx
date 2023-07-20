@@ -1,11 +1,12 @@
 import React, {useState} from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/userSlice";
 import { Button, Form, Input } from 'antd';
 import { CloseCircleOutlined } from "@ant-design/icons";
 import { postUser } from "../../API/ProTech.api";
-import { User } from "../../store/userSlice"
+import { User } from "../../store/userSlice";
+import { useNavigate } from "react-router-dom";
 
 
 const Login = () => {
@@ -14,8 +15,8 @@ const Login = () => {
   const [password, setPassword] = useState('')
   
   const dispatch = useDispatch()
-  console.log(email)
-
+  const navigate = useNavigate();
+  
   const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
@@ -25,19 +26,18 @@ const Login = () => {
   };
 
   const onLogin = async (value: User) => {
-    
     try {
       const response = await postUser(value);
       
       localStorage.setItem("token", response.data.tokens.access)
-      
       console.log(response);
-      
+      navigate ("/")
       // dispatch(setUser({
       //   email: response.data.user.email,
       //   id: response.data.user.id,
       //   token: response.data.tokens.access,
       // }))
+     
 
     } catch(er) {
       console.log(er);
