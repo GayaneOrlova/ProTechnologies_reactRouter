@@ -3,10 +3,10 @@ import { useLocation, Navigate } from 'react-router-dom'
 import { useAppSelector } from '../store/hooks';
 
 const RequireAuth = (props) => {
-    const auth = useAppSelector(state => state.user);
+    const auth = localStorage.getItem('token');
+    // const auth = useAppSelector(state => state.user);
     console.log(auth)
     // const location = useLocation()
-
     if (!auth) {
         return <Navigate to="/login"/>
     }

@@ -32,11 +32,12 @@ const Login = () => {
       localStorage.setItem("token", response.data.tokens.access)
       
       console.log(response);
-      dispatch(setUser({
-        email: response.data.user.email,
-        id: response.data.user.id,
-        token: response.data.tokens.access,
-      }))
+      
+      // dispatch(setUser({
+      //   email: response.data.user.email,
+      //   id: response.data.user.id,
+      //   token: response.data.tokens.access,
+      // }))
 
     } catch(er) {
       console.log(er);
