@@ -1,18 +1,12 @@
-import React, {FormEvent, useState} from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-// import { useState } from 'react';
-// import { Navigate, useLocation, useNavigate } from 'react-router-dom';
-// import useAuthContext from './useAuthContext.js'
-
+import { setUser } from "../../store/userSlice";
 import { Button, Form, Input } from 'antd';
 import { CloseCircleOutlined } from "@ant-design/icons";
 import { postUser } from "../../API/ProTech.api";
 import { User } from "../../store/userSlice"
 
-// type Props = {
-//   onFormSubmit: (v: string) => void;
-// };
 
 const Login = () => {
 
@@ -31,19 +25,23 @@ const Login = () => {
   };
 
   const onLogin = async (value: User) => {
+    
     try {
       const response = await postUser(value);
       
       localStorage.setItem("token", response.data.tokens.access)
       
       console.log(response);
-      // dispatch(addItem(response.data));
-      // console.log(response)
+      dispatch(setUser({
+        email: response.data.user.email,
+        id: response.data.user.id,
+        token: response.data.tokens.access,
+      }))
+
     } catch(er) {
       console.log(er);
     }
   }
-
 
   return (
     <>
@@ -68,7 +66,6 @@ const Login = () => {
             name="email"
             rules={[{ required: true, message: 'Please input your email!' }]}
           >
-            {/* <Input value={email} onChange={(e) => setEmail(e.target.value)}/> */}
             <Input value={email} onChange={onEmailChange}/>
           </Form.Item>
 
@@ -93,5 +90,5 @@ const Login = () => {
     </>
   )
 }
-
+ 
 export { Login };

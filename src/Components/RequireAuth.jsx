@@ -1,22 +1,14 @@
-// // import { Outlet, Navigate } from 'react-router-dom'
-
-// // const PrivateRoutes = () => {
-// //     let auth = {'token':true}
-// //     return(
-// //         auth.token ? <Outlet/> : <Navigate to="/"/>
-// //     )
-// // }
-
-// export default PrivateRoutes
-
+import React from 'react';
 import { useLocation, Navigate } from 'react-router-dom'
+import { useAppSelector } from '../store/hooks';
 
 const RequireAuth = (props) => {
     const auth = useAppSelector(state => state.user);
-    const location = useLocation()
+    console.log(auth)
+    // const location = useLocation()
 
     if (!auth) {
-        return <Navigate to="/login" state={{from: location}} />
+        return <Navigate to="/login"/>
     }
 
     return props.children
