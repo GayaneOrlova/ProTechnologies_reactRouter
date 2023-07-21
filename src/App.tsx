@@ -16,10 +16,8 @@ function App() {
     {/* <BrowserRouter> */}
       <PageHeader />
       <Routes>
-        <Route index element={<ProductCard />}/>
-       
+        <Route index element={<ProductCard />}/>   
         <Route path="login/" element={<Login/>} />  {/* new */}
-        
         <Route path="project/:id/" element={
           <>
             <RequireAuth>

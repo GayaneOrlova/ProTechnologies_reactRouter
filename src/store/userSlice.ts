@@ -1,45 +1,42 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 // // import generateRandomID from "../utils/generateRandomID";
 
-
 export type User = {
   email: string;
-  password: string;
+  id: string;
+  username: string;
 };
 
-const initialState = {
-  email: null,
-  id: null,
-  token: null,
+type UserSliceType = {
+  user: User;
+};
+
+const initialState: UserSliceType = {
+  user: {
+    id: "",
+    email: "",
+    username: "",
+  },
 };
 
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  
   reducers: {
-    setUser(state, action) {
-      state.email = action.payload.email;
-      state.id = action.payload.id;
-      state.token = action.payload.token;
-      
+    setUser(state, action: PayloadAction<User>) {
+      state.user = action.payload;
     },
   },
 });
 
-export const {
-  setUser,
-} = userSlice.actions;
+export const { setUser } = userSlice.actions;
 
 export default userSlice.reducer;
-
-
 
 //   reducers: {
 //     addManyItems(state, action: PayloadAction<Item[]>) {
 //       state.toDoList = action.payload
 //     },
-
 
 //     // addItem: (state, action: PayloadAction<string>) => {
 //     //   if (!action.payload.trim()) {
@@ -52,7 +49,6 @@ export default userSlice.reducer;
 //     //   };
 //     //   state.toDoList.push(newListItem);
 //     // },
-
 
 //     addItem: (state, action: PayloadAction<Item>) => {
 //       state.toDoList.push(action.payload);
@@ -75,8 +71,7 @@ export default userSlice.reducer;
 //         return action.payload;
 //       });
 //     },
-    
-    
+
 //     onChangeValue: (state, action: PayloadAction<Item>) => {
 //       state.toDoList = state.toDoList.map((item) => {
 //         if (item.id !== action.payload.id) {
@@ -85,25 +80,23 @@ export default userSlice.reducer;
 //         return action.payload;
 //       });
 //     },
-    
+
 //     onTodoItemRemove: (state, action: PayloadAction<string>) => {
 //       state.toDoList = state.toDoList.filter((item) => item.id !== action.payload
 //       );
 //     },
 
-
 //     onClearComplited: (state) => {
 //       state.toDoList = state.toDoList.filter((item) => !item.checked);
 //     },
 
-// // 
+// //
 //     onToogleCheck: (state) => {
 //       const isCheckedItem = Boolean(state.toDoList.find((item) => !item.checked));
 //       state.toDoList = state.toDoList.map((item) => {
 //         return { ...item, checked: isCheckedItem };
 //       });
 //     },
-
 
 //     setTodoItem(state, action: PayloadAction<Item>) {
 //       state.toDoList = state.toDoList.map((e) => {
@@ -128,6 +121,5 @@ export default userSlice.reducer;
 //   setFilter,
 //   addManyItems,
 // } = todoSlice.actions;
-
 
 // export default todoSlice.reducer;

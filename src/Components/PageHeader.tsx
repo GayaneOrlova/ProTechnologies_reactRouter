@@ -17,7 +17,7 @@ const PageHeader = () => {
         </Col>
         <Col className="gutter-row" span={8}>
           <div style={style}><Link to='login'>
-            <h2>Log in/Log out</h2>
+            <h2>Log in</h2>
             {/* <HeaderLogin/> */}
           </Link></div>
         </Col>

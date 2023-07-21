@@ -10,8 +10,19 @@ import { setUser } from "../store/userSlice";
 //   id: string;
 // };
 
-export const postUser = ({email, password}: User) => {
-  return axios.post(`/login/`, {email, password})
+type TokensResponseType = {
+  tokens: {
+    refresh: string;
+    access: string;
+  }
+}
+
+type LoginResponseType = {
+  user: User;
+} & TokensResponseType;
+
+export const postUser = ({ email, password }: { email: string, password: string }) => {
+  return axios.post<LoginResponseType>(`/login/`, { email, password })
 }
 
 
