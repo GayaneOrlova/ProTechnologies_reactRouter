@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { HTMLProps, HtmlHTMLAttributes, ReactChild, ReactComponentElement, ReactElement, ReactHTMLElement, ReactNode } from 'react';
 import { useLocation, Navigate } from 'react-router-dom'
-import { useAppSelector } from '../store/hooks';
+import { useAppSelector } from '../Store/hooks';
 
 const RequireAuth = (props) => {
-    // const auth = localStorage.getItem('token');
     const auth = useAppSelector(state => state.user);
-    
-    console.log(auth)
-    // const location = useLocation()
+  
+    console.log('mmmm', auth.user)
     if (!auth.user.email) {
         return <Navigate to="/login"/>
     }
+
     return props.children
 }
 

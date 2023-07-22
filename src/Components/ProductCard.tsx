@@ -1,7 +1,3 @@
-// import { Button, Form, Input } from 'antd';
-// import { CloseCircleOutlined } from "@ant-design/icons";
-// const style: React.CSSProperties = { background: '#0092ff', padding: '8px 0' };
-
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -14,7 +10,7 @@ const ProductCard = () => {
 
   return (
     <>
-    <Link to='project/1/'>
+    <Link to='project/:id/'>
       <Card
         style={{ width: 300 }}
         cover={<img src="https://tuhub.ru/sites/default/files/2018-02/1-B6I9Z__mLkkiSShRLR4iQ.png" alt="ReactRedux"/>}

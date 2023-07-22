@@ -1,12 +1,12 @@
 import React, {useState} from "react";
-import { Link, Navigate } from "react-router-dom";
-import { useAppDispatch } from "../../store/hooks";
-import { setUser } from "../../store/userSlice";
+import { Link } from "react-router-dom";
+import { useAppDispatch } from "../Store/hooks";
+import { setUser } from "../Store/userSlice";
 import { Button, Form, Input } from 'antd';
 import { CloseCircleOutlined } from "@ant-design/icons";
-import { postUser } from "../../API/ProTech.api";
-import { User } from "../../store/userSlice";
+import { postUser } from "../API/user.api";
 import { useNavigate } from "react-router-dom";
+// import { useAppSelector } from "../Store/hooks";
 
 
 const Login = () => {
@@ -32,26 +32,28 @@ const Login = () => {
     try {
       const response = await postUser(value);
 
-      localStorage.setItem("token", response.data.tokens.access)
-      console.log(response);
+      localStorage.setItem("accessToken", response.data.tokens.access)
+      
       dispatch(setUser(response.data.user))
       navigate ("/")
     } catch(er) {
       console.log(er);
     }
   }
-
+ 
+//  const auth = useAppSelector(state => state.user.);
+// console.log(auth)
+  
   return (
     <>
       <div>
         <Form
-          // name="basic"
           labelCol={{ span: 8 }}
           wrapperCol={{ offset: 30 }}
           style={{ maxWidth: 600 }}
           initialValues={{ remember: true }}
           onFinish={onLogin}
-        // onFinishFailed={onFinishFailed}
+          // onFinishFailed={onFinishFailed}
         >
           <Form.Item wrapperCol={{ offset: 23, span: 8 }}>
             <Link to='/'>
@@ -80,7 +82,8 @@ const Login = () => {
 
           <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
             <Button type="primary" htmlType="submit">
-              Log in
+            {/* <LoginOutlined/> */}
+            Log in
             </Button>
           </Form.Item>
         </Form>
