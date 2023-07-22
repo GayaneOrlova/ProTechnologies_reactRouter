@@ -2,7 +2,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Col, Divider, Row } from 'antd';
-const style = { background: 'f4cf0f', padding: '8px 0' };
 
 import { useAppSelector } from '../Store/hooks';
 import store from '../Store/store';
@@ -15,9 +14,8 @@ import { logout } from "../Store/userSlice";
 import { useNavigate } from "react-router-dom";
 
 import { UserOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
-
-
+import { Button, Typography } from 'antd';
+import {LoginOutlined, LogoutOutlined} from '@ant-design/icons';
 
 const PageHeader = () => {
 
@@ -33,33 +31,37 @@ const PageHeader = () => {
     navigate("/")
   }
 
-
-
   return (
     <>
-      <Row gutter={16}>
+      <Row 
+      //  gutter={16}
+       style={{
+        // position: 'sticky',
+        // top: 0,
+        // zIndex: 1,
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        background: "darkcyan",
+        paddingLeft: "50px",
+        paddingRight: "30px",
+      }}
+      >
         <Col className="gutter-row" span={16}>
-          <div style={style}><h2>Project and Technologies</h2></div>
+          <h2 style={{color: 'white'}}>PROJECTS  AND  TECHNOLOGIES</h2>
         </Col>
         <Col className="gutter-row" span={8}>
-          <div style={style}>
-
+          <div>
             {!auth.user.email ?
               <Link to='login'>
-                <h2>Log in</h2>
+                <Button icon={<LoginOutlined style={{color: "darkcyan"}}/>} style={{color: "darkcyan"}}>LOGIN</Button>
               </Link>
               :
               <div>
-                <Button
-                  type="primary"
-                  icon={<UserOutlined />}
-                // onClick={() => enterLoading(1)}
-                >
-                  PROFILE
-                </Button>
-
+                <Button icon={<UserOutlined />}>PROFILE</Button>
                 <a href='#' onClick={logoutHandler}>
-                  Logout
+                {/* a - hmmmm */}
+                <Button icon={<LogoutOutlined style={{color: "darkcyan"}}/>} style={{color: "darkcyan"}}>LOGOUT</Button>
                 </a>
               </div>
             }

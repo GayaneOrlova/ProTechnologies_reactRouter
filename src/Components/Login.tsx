@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "../Store/hooks";
 import { setUser } from "../Store/userSlice";
-import { Button, Form, Input } from 'antd';
+import { AutoComplete, Button, Form, Input } from 'antd';
 import { CloseCircleOutlined } from "@ant-design/icons";
 import { postUser } from "../API/user.api";
 import { useNavigate } from "react-router-dom";
@@ -50,14 +50,14 @@ const Login = () => {
         <Form
           labelCol={{ span: 8 }}
           wrapperCol={{ offset: 30 }}
-          style={{ maxWidth: 600 }}
+          style={{ maxWidth: 600, marginLeft: "300px", marginTop: "50px"}}
           initialValues={{ remember: true }}
           onFinish={onLogin}
           // onFinishFailed={onFinishFailed}
         >
           <Form.Item wrapperCol={{ offset: 23, span: 8 }}>
             <Link to='/'>
-              <CloseCircleOutlined />
+              <CloseCircleOutlined style={{color: "darkcyan"}}/>
             </Link>
           </Form.Item>
         
@@ -80,10 +80,10 @@ const Login = () => {
             />
           </Form.Item>
 
-          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <Button type="primary" htmlType="submit">
+          <Form.Item wrapperCol={{ offset: 14, span: 16 }}>
+            <Button type="primary" htmlType="submit" style={{background: "darkcyan"}}>
             {/* <LoginOutlined/> */}
-            Log in
+            LOGIN
             </Button>
           </Form.Item>
         </Form>
