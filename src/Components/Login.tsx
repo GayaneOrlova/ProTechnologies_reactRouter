@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "../Store/hooks";
 import { setUser } from "../Store/userSlice";
-import { AutoComplete, Button, Form, Input } from 'antd';
+import { AutoComplete, Button, Form, Input, message } from 'antd';
 import { CloseCircleOutlined } from "@ant-design/icons";
 import { postUser } from "../API/user.api";
 import { useNavigate } from "react-router-dom";
@@ -20,12 +20,19 @@ const Login = () => {
   
   const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
+    setUserError(false)
   };
   
   const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+    setUserError(false)
   };
 
+  const onFinishFailed = () => {
+    message.error('Wrong email or password!');
+  };
+  
+  
   const onLogin = async (value: {
     email: string;
     password: string;
@@ -37,7 +44,9 @@ const Login = () => {
       
       dispatch(setUser(response.data.user))
       navigate ("/")
+      console.log(userError)
     } catch(er) {
+      onFinishFailed()
       setUserError(true)
       console.log(er);
     }
@@ -62,6 +71,7 @@ const Login = () => {
           <Form.Item
             label="Email"
             name="email"
+            validateStatus={userError ? "error" : "validating"}
             rules={[{ required: true, message: 'Please input your email!' }]}
           >
             <Input value={email} onChange={onEmailChange}/>
@@ -71,7 +81,6 @@ const Login = () => {
             label="Password"
             name="password"
             validateStatus={userError ? "error" : "validating"}
-            help={userError ? "Please, enter the correct password!" : ""}
             rules={[{ required: true, message: 'Please input your password!' }]}
           >
             <Input.Password
