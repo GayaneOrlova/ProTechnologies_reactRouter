@@ -13,6 +13,7 @@ const Login = () => {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [userError, setUserError] = useState(false)
   
   const dispatch = useAppDispatch()
   const navigate = useNavigate();
@@ -37,12 +38,10 @@ const Login = () => {
       dispatch(setUser(response.data.user))
       navigate ("/")
     } catch(er) {
+      setUserError(true)
       console.log(er);
     }
   }
- 
-//  const auth = useAppSelector(state => state.user.);
-// console.log(auth)
   
   return (
     <>
@@ -53,14 +52,13 @@ const Login = () => {
           style={{ maxWidth: 600, marginLeft: "300px", marginTop: "50px"}}
           initialValues={{ remember: true }}
           onFinish={onLogin}
-          // onFinishFailed={onFinishFailed}
         >
           <Form.Item wrapperCol={{ offset: 23, span: 8 }}>
             <Link to='/'>
               <CloseCircleOutlined style={{color: "darkcyan"}}/>
             </Link>
           </Form.Item>
-        
+          
           <Form.Item
             label="Email"
             name="email"
@@ -68,22 +66,24 @@ const Login = () => {
           >
             <Input value={email} onChange={onEmailChange}/>
           </Form.Item>
-
+          
           <Form.Item
             label="Password"
             name="password"
+            validateStatus={userError ? "error" : "validating"}
+            help={userError ? "Please, enter the correct password!" : ""}
             rules={[{ required: true, message: 'Please input your password!' }]}
           >
             <Input.Password
-            value={password}
-            onChange={onPasswordChange}
+              value={password}
+              allowClear
+              onChange={onPasswordChange}
             />
           </Form.Item>
-
+          
           <Form.Item wrapperCol={{ offset: 14, span: 16 }}>
-            <Button type="primary" htmlType="submit" style={{background: "darkcyan"}}>
-            {/* <LoginOutlined/> */}
-            LOGIN
+            <Button type="primary" htmlType="submit" style={{ background: "darkcyan" }}>
+              LOGIN
             </Button>
           </Form.Item>
         </Form>

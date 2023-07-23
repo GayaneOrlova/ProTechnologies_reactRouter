@@ -22,6 +22,6 @@ export const postUser = ({ email, password }: { email: string, password: string 
 }
 
 
-export const getAllProjects = () => {
-  return axios.get<LoginResponseType>('project/');
-}
+// export const getAllProjects = () => {
+//   return axios.get<LoginResponseType>('project/');
+// }
