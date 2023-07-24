@@ -32,7 +32,6 @@ const Login = () => {
     message.error('Wrong email or password!');
   };
   
-  
   const onLogin = async (value: {
     email: string;
     password: string;

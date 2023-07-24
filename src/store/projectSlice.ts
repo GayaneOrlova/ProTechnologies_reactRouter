@@ -4,6 +4,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export type Project = {
   title: string;
   id: string;
+  author: string;
+  technologies: []
 };
 
 type ProjectSliceType = {
@@ -19,14 +21,14 @@ export const ProjectSlice = createSlice({
   initialState,
 
   reducers: {
-    addManyProjects(state, action: PayloadAction<Project[]>) {
+    addAllProjects(state, action: PayloadAction<Project[]>) {
       state.projectList = action.payload
     },
   },
   });
   
   export const {
-    addManyProjects,
+    addAllProjects,
     
   } = ProjectSlice.actions;
   
