@@ -5,7 +5,6 @@ import { useAppSelector } from '../Store/hooks';
 const RequireAuth = (props) => {
     const auth = useAppSelector(state => state.user);
   
-    console.log('mmmm', auth.user)
     if (!auth.user.email) {
         return <Navigate to="/login"/>
     }

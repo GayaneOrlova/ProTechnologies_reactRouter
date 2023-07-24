@@ -5,7 +5,8 @@ export type Project = {
   title: string;
   id: string;
   author: string;
-  technologies: []
+  technologies: [];
+  body: string
 };
 
 type ProjectSliceType = {

@@ -43,7 +43,6 @@ const Login = () => {
       
       dispatch(setUser(response.data.user))
       navigate ("/")
-      console.log(userError)
     } catch(er) {
       onFinishFailed()
       setUserError(true)

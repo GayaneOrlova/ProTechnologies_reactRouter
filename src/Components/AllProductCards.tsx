@@ -6,29 +6,29 @@ import { useAppDispatch, useAppSelector } from '../Store/hooks';
 import { ProductCard } from './ProductCard';
 
 
+
 const AllProductCards = () => {
   const [projects, setProjects] = useState([])
-  
   const dispatch = useAppDispatch();
+  
   const fetchAllProjects  = async () => {
     try {
       const response = await getAllProjects();
       dispatch(addAllProjects(response.data))
       setProjects(response.data);
+      console.log('responce', response.data)
     } catch(er) {
       console.log(er);
     }
   }
 
-  
-    // new
     useEffect(() => {
       fetchAllProjects();
     }, [])
 
   return (
     <>
-    <ul>
+    <ul style={{display: 'flex', flexWrap: "wrap", justifyContent: 'space-around', listStyleType: 'none'}}>
     {projects.map((project) => (
       <li><ProductCard project={project} /></li>
     ))}

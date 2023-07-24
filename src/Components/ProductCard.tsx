@@ -1,22 +1,35 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import { EditOutlined } from '@ant-design/icons';
-import { Card } from 'antd';
+import { Card, Grid, Space } from 'antd';
+import { Project } from "../Store/projectSlice";
+import Column from "antd/es/table/Column";
 
 const { Meta } = Card;
 
-const ProductCard = (props) => {
+type Props = {
+  project: Project;
+  // technologies: string;
+  // title: string;
+};
+
+const ProductCard: React.FC<Props> = (props) => {
 
   return (
     <>
-    <Link to='project/:id/'>
-      <Card
-        style={{ width: 300 }}
-        cover={<img src="https://tuhub.ru/sites/default/files/2018-02/1-B6I9Z__mLkkiSShRLR4iQ.png" alt="ReactRedux"/>}
-        actions={[ <EditOutlined key="edit" />,]}>
-      <Meta title={`Project name: ${props.project.title}`} description="Technologies used:"/>
-      </Card>
+      <Link to='project/:id/'>
+        <Space direction="vertical" size={12}>
+          <Card title={`Project card № ${props.project.id}`} style={{ width: 300, marginTop: 20, border: "2px solid darkcyan"}}>
+            <Card
+              cover={<img src="https://www.it-world.ru/upload/iblock/3f6/6c5bvtxl1zu15ocotsmcsk1e6k2xi6ew/shutterstock_1033853617.jpg" alt="ReactRedux" />}
+              type="inner"
+              title="Name:"
+              extra={<p>{props.project.title}</p>}
+            >
+              <p>Technologies: {(props.project.technologies).join(", ")}</p>
+            </Card>
+          </Card>
+        </Space>
     </Link>
     </>
   )
