@@ -21,7 +21,3 @@ export const postUser = ({ email, password }: { email: string, password: string 
   return axios.post<LoginResponseType>(`/login/`, { email, password })
 }
 
-
-// export const getAllProjects = () => {
-//   return axios.get<LoginResponseType>('project/');
-// }

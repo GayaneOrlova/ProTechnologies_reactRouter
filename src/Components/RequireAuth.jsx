@@ -1,5 +1,5 @@
-import React, { HTMLProps, HtmlHTMLAttributes, ReactChild, ReactComponentElement, ReactElement, ReactHTMLElement, ReactNode } from 'react';
-import { useLocation, Navigate } from 'react-router-dom'
+import React from 'react';
+import { Navigate } from 'react-router-dom'
 import { useAppSelector } from '../Store/hooks';
 
 const RequireAuth = (props) => {

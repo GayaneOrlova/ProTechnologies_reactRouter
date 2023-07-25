@@ -8,14 +8,15 @@ import { ProductCard } from './ProductCard';
 
 
 const AllProductCards = () => {
-  const [projects, setProjects] = useState([])
+
   const dispatch = useAppDispatch();
+  const projectsList = useAppSelector((state) => state.project.projectList)
   
   const fetchAllProjects  = async () => {
     try {
       const response = await getAllProjects();
       dispatch(addAllProjects(response.data))
-      setProjects(response.data);
+      
       console.log('responce', response.data)
     } catch(er) {
       console.log(er);
@@ -28,9 +29,11 @@ const AllProductCards = () => {
 
   return (
     <>
-    <ul style={{display: 'flex', flexWrap: "wrap", justifyContent: 'space-around', listStyleType: 'none'}}>
-    {projects.map((project) => (
-      <li><ProductCard project={project} /></li>
+    <ul style={{display: 'flex', flexWrap: "wrap", justifyContent: 'space-around', listStyleType: 'none' , columnGap: "5px"}}>
+    {projectsList.map((project) => (
+      <li key={project.id}>
+        <ProductCard  project={project}/>
+      </li>
     ))}
     </ul>
     </>
