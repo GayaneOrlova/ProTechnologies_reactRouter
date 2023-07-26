@@ -1,10 +1,5 @@
 import { User } from "../Store/userSlice"
 import axios from './instance';
-import React from 'react';
-import App from '../App';
-import instance from './instance';
-import { setUser } from "../Store/userSlice";
-
 
 type TokensResponseType = {
   tokens: {
@@ -21,3 +16,6 @@ export const postUser = ({ email, password }: { email: string, password: string 
   return axios.post<LoginResponseType>(`/login/`, { email, password })
 }
 
+export const getUser = (access: string | null) => {
+  return axios.get<User>(`/me/`)
+}

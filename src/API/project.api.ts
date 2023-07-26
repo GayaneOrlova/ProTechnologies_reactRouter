@@ -1,7 +1,5 @@
 import axios from './instance';
-import { setUser } from "../Store/userSlice";
 import { Project } from "../Store/projectSlice";
-
 
 type Props = {
   project: Project

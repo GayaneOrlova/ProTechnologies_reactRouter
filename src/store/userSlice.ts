@@ -31,13 +31,6 @@ export const userSlice = createSlice({
      state.user.id = '',
      state.user.username = ''
     },
-    
-    // addManyProjects(state, action: PayloadAction<User[]>) {
-    //   state.user. = action.payload
-    // },
-
-    
-    
   },
 });
 

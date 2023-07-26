@@ -1,13 +1,11 @@
 import React, {useState} from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../Store/hooks";
 import { setUser } from "../Store/userSlice";
-import { AutoComplete, Button, Form, Input, message } from 'antd';
+import {Button, Form, Input, message } from 'antd';
 import { CloseCircleOutlined } from "@ant-design/icons";
 import { postUser } from "../API/user.api";
-import { useNavigate } from "react-router-dom";
-// import { useAppSelector } from "../Store/hooks";
-
+import { AppRoutes } from "../utils/router/constants";
 
 const Login = () => {
 
@@ -39,10 +37,12 @@ const Login = () => {
     try {
       const response = await postUser(value);
 
-      localStorage.setItem("accessToken", response.data.tokens.access)
+      localStorage.setItem("access", response.data.tokens.access)
       
       dispatch(setUser(response.data.user))
+      console.log("a nu-ka",response.data.user)
       navigate ("/")
+      
     } catch(er) {
       onFinishFailed()
       setUserError(true)
@@ -61,7 +61,7 @@ const Login = () => {
           onFinish={onLogin}
         >
           <Form.Item wrapperCol={{ offset: 23, span: 8 }}>
-            <Link to='/'>
+            <Link to={AppRoutes.home}>
               <CloseCircleOutlined style={{color: "darkcyan"}}/>
             </Link>
           </Form.Item>

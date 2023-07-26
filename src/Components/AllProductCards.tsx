@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
 import { getAllProjects } from '../API/project.api';
 import { addAllProjects } from '../Store/projectSlice';
 import { useAppDispatch, useAppSelector } from '../Store/hooks';
 import { ProductCard } from './ProductCard';
 
-
+const style = {
+}
 
 const AllProductCards = () => {
-
   const dispatch = useAppDispatch();
   const projectsList = useAppSelector((state) => state.project.projectList)
   
