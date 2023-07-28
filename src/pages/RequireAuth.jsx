@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom'
-import { useAppSelector } from '../Store/hooks';
+import { useAppSelector } from '../store/hooks';
 
 const RequireAuth = (props) => {
     const auth = useAppSelector(state => state.user);

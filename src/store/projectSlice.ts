@@ -8,28 +8,28 @@ export type Project = {
   body: string
 };
 
-type ProjectSliceType = {
-  projectList: Project[],
+type ProjectsSliceType = {
+  projectsList: Project[],
 };
 
-const initialState: ProjectSliceType = {
-  projectList: [],
+const initialState: ProjectsSliceType = {
+  projectsList: [],
 };
 
-export const ProjectSlice = createSlice({
+export const projectSlice = createSlice({
   name: "projects",
   initialState,
 
   reducers: {
     addAllProjects(state, action: PayloadAction<Project[]>) {
-      state.projectList = action.payload
+      state.projectsList = action.payload
     },
   },
   });
   
   export const {
     addAllProjects,
-  } = ProjectSlice.actions;
+  } = projectSlice.actions;
   
   
-  export default ProjectSlice.reducer;
+  export default projectSlice.reducer;

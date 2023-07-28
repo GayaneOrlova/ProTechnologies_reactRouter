@@ -1,23 +1,15 @@
 // import "../Header/Header.css"
-import React, { EventHandler, MouseEventHandler } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Col, Divider, Row } from 'antd';
-
-import { useAppSelector } from '../Store/hooks';
-import store from '../Store/store';
-import { Login } from './Login';
-import userSlice from '../Store/userSlice';
-import { User } from "../Store/userSlice";
-import { useState } from 'react';
-import { useAppDispatch } from '../Store/hooks';
-import { logout } from "../Store/userSlice";
+import { Col, Row } from 'antd';
+import { useAppSelector } from '../store/hooks';
+import { useAppDispatch } from '../store/hooks';
+import { logout } from "../store/userSlice";
 import { useNavigate } from "react-router-dom";
-
 import { UserOutlined } from '@ant-design/icons';
-import { Button, Typography } from 'antd';
+import { Button } from 'antd';
 import { LoginOutlined, LogoutOutlined, FileProtectOutlined } from '@ant-design/icons';
-import { AnchorButtonProps } from 'antd/es/button/button';
-import { ButtonType } from 'antd/es/button';
+import { AppRoutes } from '../utils/router/constants';
 
 const style = { color: "darkcyan" };
 
@@ -45,8 +37,11 @@ const PageHeader: React.FC = () => {
         }}
       >
         <Col className="gutter-row" span={16}>
+        <Link to={AppRoutes.home}>
+
 
           <h2 style={{ color: 'white' }}><FileProtectOutlined style={{ paddingRight: "10px" }} />PROJECTS  AND  TECHNOLOGIES</h2>
+          </Link>
         </Col>
         <Col className="gutter-row" span={8}>
           <div style={{ textAlign: "end" }}>

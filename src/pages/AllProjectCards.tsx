@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { getAllProjects } from '../API/project.api';
-import { addAllProjects } from '../Store/projectSlice';
-import { useAppDispatch, useAppSelector } from '../Store/hooks';
-import { ProductCard } from './ProductCard';
+import { addAllProjects } from '../store/projectSlice';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { ProductCard } from './ProjectCard';
 
-const style = {
-}
 
 const AllProductCards = () => {
   const dispatch = useAppDispatch();
-  const projectsList = useAppSelector((state) => state.project.projectList)
+  const projectsList = useAppSelector((state) => state.projects.projectsList)
   
   const fetchAllProjects  = async () => {
     try {
@@ -28,7 +26,14 @@ const AllProductCards = () => {
 
   return (
     <>
-    <ul style={{display: 'flex', flexWrap: "wrap", justifyContent: 'space-around', listStyleType: 'none' , columnGap: "5px"}}>
+    <ul
+      style={{
+        display: 'flex',
+        flexWrap: "wrap",
+        justifyContent: 'space-around',
+        listStyleType: 'none',
+        columnGap: "5px"}}
+    >
     {projectsList.map((project) => (
       <li key={project.id}>
         <ProductCard  project={project}/>

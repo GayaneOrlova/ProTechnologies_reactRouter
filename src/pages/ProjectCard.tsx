@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Card, Space } from 'antd';
-import { Project } from "../Store/projectSlice";
+import { Project } from "../store/projectSlice";
 import { AppRoutes } from "../utils/router/constants";
 
 const { Meta } = Card;

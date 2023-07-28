@@ -6,6 +6,4 @@ export const AppRoutes = {
     return this.details.replace(':id', id)
   },
   
-  
-
 }

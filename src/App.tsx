@@ -1,31 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import { useAppDispatch } from './Store/hooks';
+import { useAppDispatch } from './store/hooks';
 import { Routes, Route } from "react-router-dom";
-import { PageHeader } from "./Components/PageHeader";
-import { Login } from "./Components/Login";
-import { AllProductCards } from './Components/AllProductCards';
-import { DetailCard } from "./Components/DetailCard";
-import RequireAuth from './Components/RequireAuth';
+import { PageHeader } from "./pages/Header";
+import { Login } from "./pages/Login";
+import { AllProductCards } from './pages/AllProjectCards';
+import { DetailCard } from "./pages/DetailCard";
+import RequireAuth from './pages/RequireAuth';
 import { getUser } from './API/user.api';
-import { setUser } from './Store/userSlice';
+import { setUser } from './store/userSlice';
+import { PageFooter } from './pages/Footer';
 
 
 function App() {
-  const [authorized, setAuthorized] = useState(false);
+  const [initialization, setInitialization] = useState(false);
 
   const dispatch = useAppDispatch()
 
   const fetchToken = async () => {
-    const token = localStorage.getItem('access');
+    // const token = localStorage.getItem('access');
+    // if(!token) {return}
+    
     try {
-      const response = await getUser(token);
+      const response = await getUser();
       const user = response.data;
       dispatch(setUser(user))
 
     } catch (er) {
       console.log(er);
     } finally {
-      setAuthorized(true)
+      setInitialization(true)
+      console.log("баревчики")
     }
   }
 
@@ -33,7 +37,7 @@ function App() {
     fetchToken();
   }, [])
 
-  if (!authorized) { return null; }
+  if (!initialization) { return null; }
 
   return (
     <>
@@ -47,6 +51,7 @@ function App() {
           </RequireAuth>
         } />
       </Routes>
+      <PageFooter />
     </>
   );
 }

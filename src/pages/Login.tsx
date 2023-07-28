@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../Store/hooks";
-import { setUser } from "../Store/userSlice";
+import { useAppDispatch } from "../store/hooks";
+import { setUser } from "../store/userSlice";
 import {Button, Form, Input, message } from 'antd';
 import { CloseCircleOutlined } from "@ant-design/icons";
 import { postUser } from "../API/user.api";
@@ -36,11 +36,8 @@ const Login = () => {
   }) => {
     try {
       const response = await postUser(value);
-
       localStorage.setItem("access", response.data.tokens.access)
-      
       dispatch(setUser(response.data.user))
-      console.log("a nu-ka",response.data.user)
       navigate ("/")
       
     } catch(er) {
