@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../store/hooks";
-import { setUser } from "../store/userSlice";
+import { useAppDispatch } from "../../store/hooks";
+import { setUser } from "../../store/userSlice";
 import {Button, Form, Input, message } from 'antd';
 import { CloseCircleOutlined } from "@ant-design/icons";
-import { postUser } from "../API/user.api";
-import { AppRoutes } from "../utils/router/constants";
+import { postUser } from "../../api/user.api";
+import { AppRoutes } from "../../utils/router/constants";
 
 const Login = () => {
 

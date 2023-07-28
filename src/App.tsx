@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useAppDispatch } from './store/hooks';
 import { Routes, Route } from "react-router-dom";
-import { PageHeader } from "./pages/Header";
-import { Login } from "./pages/Login";
-import { AllProductCards } from './pages/AllProjectCards';
-import { DetailCard } from "./pages/DetailCard";
+import { PageHeader } from "./pages/header/Header";
+import { Login } from "./pages/card/Login";
+import { AllProductCards } from './pages/card/AllProjectCards';
+import { DetailCard } from "./pages/card/detail/DetailCard";
 import RequireAuth from './pages/RequireAuth';
-import { getUser } from './API/user.api';
+import { getUser } from './api/user.api';
 import { setUser } from './store/userSlice';
-import { PageFooter } from './pages/Footer';
+import { PageFooter } from './pages/footer/Footer';
 
 
 function App() {

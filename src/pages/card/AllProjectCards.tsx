@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { getAllProjects } from '../API/project.api';
-import { addAllProjects } from '../store/projectSlice';
-import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { getAllProjects } from '../../api/project.api';
+import { addAllProjects } from '../../store/projectSlice';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { ProductCard } from './ProjectCard';
 
 
