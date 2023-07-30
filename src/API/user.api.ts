@@ -1,4 +1,4 @@
-import { User } from "../store/userSlice"
+import { User } from "../store/slices/userSlice"
 import axios from './instance';
 
 type TokensResponseType = {

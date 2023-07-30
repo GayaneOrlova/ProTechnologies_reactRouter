@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Card, Space } from 'antd';
-import { Project } from "../../store/projectSlice";
-import { AppRoutes } from "../../utils/router/constants";
-
-const { Meta } = Card;
+import { Project } from "../../../store/slices/projectSlice";
+import { AppRoutes } from "../../../utils/router/constants";
+import { CardViewStyled } from "./CardView.styled";
 
 type Props = {
   id?: string,
@@ -18,12 +17,12 @@ const IMAGE_SRC = "https://www.it-world.ru/upload/iblock/3f6/6c5bvtxl1zu15ocotsm
 const ProductCard: React.FC<Props> = (props) => {
 
   return (
-    <>
+    <CardViewStyled>
       <Link to={AppRoutes.getDetailsRoute(props.project.id)}>
         <Space direction="vertical" size={12}>
           <Card
+            className="card__view"
             title={`Project card № ${props.project.id}`}
-            style={{ width: 320, marginTop: 20, border: "2px solid darkcyan" }}
           >
             <Card
               cover={<img src={IMAGE_SRC} alt="ReactRedux" />}
@@ -36,7 +35,7 @@ const ProductCard: React.FC<Props> = (props) => {
           </Card>
         </Space>
       </Link>
-    </>
+    </CardViewStyled>
   )
 }
 

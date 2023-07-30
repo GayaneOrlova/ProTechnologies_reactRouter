@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { useAppDispatch } from './store/hooks';
-import { Routes, Route } from "react-router-dom";
-import { PageHeader } from "./pages/header/Header";
-import { Login } from "./pages/card/Login";
-import { AllProductCards } from './pages/card/AllProjectCards';
-import { DetailCard } from "./pages/card/detail/DetailCard";
-import RequireAuth from './pages/RequireAuth';
 import { getUser } from './api/user.api';
-import { setUser } from './store/userSlice';
+import { useAppDispatch } from './store/hooks';
+import { setUser } from './store/slices/userSlice';
+import { Routes, Route } from "react-router-dom";
+import RequireAuth from './auth/RequireAuth';
+import { PageHeader } from "./pages/header/Header";
+import { HomePage } from './pages/home/homePage/HomePage';
+import { Login } from "./pages/login/Login";
+import { DetailCard } from "./pages/detail/DetailPage";
 import { PageFooter } from './pages/footer/Footer';
 
 
 function App() {
   const [initialization, setInitialization] = useState(false);
-
   const dispatch = useAppDispatch()
 
   const fetchToken = async () => {
@@ -29,7 +28,6 @@ function App() {
       console.log(er);
     } finally {
       setInitialization(true)
-      console.log("баревчики")
     }
   }
 
@@ -43,7 +41,7 @@ function App() {
     <>
       <PageHeader />
       <Routes>
-        <Route index element={<AllProductCards />} />
+        <Route index element={<HomePage />} />
         <Route path="login" element={<Login />} />
         <Route path="project/:id" element={
           <RequireAuth>
