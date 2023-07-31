@@ -10,10 +10,14 @@ export type Project = {
 
 type ProjectsSliceType = {
   projectsList: Project[],
+  currentPage: number, //new
+  pages: number[], //NEW
 };
 
 const initialState: ProjectsSliceType = {
   projectsList: [],
+  currentPage: 0, //new
+  pages: [],
 };
 
 export const projectSlice = createSlice({
@@ -24,11 +28,17 @@ export const projectSlice = createSlice({
     addAllProjects(state, action: PayloadAction<Project[]>) {
       state.projectsList = action.payload
     },
+    // new
+    setCurrentPage(state, action: PayloadAction<number>) {
+      state.currentPage = action.payload
+// new
+    },
   },
   });
   
   export const {
     addAllProjects,
+    setCurrentPage, //new
   } = projectSlice.actions;
   
   

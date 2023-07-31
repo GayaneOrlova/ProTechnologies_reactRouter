@@ -31,7 +31,7 @@ const PageHeader: React.FC = () => {
         </Link>
         <div>
           {!auth.user.email ? (
-            <Link to='login'>
+            <Link to={AppRoutes.login}>
               <Button className='button__header' icon={<LoginOutlined />}>
                 LOGIN
               </Button>
@@ -43,7 +43,7 @@ const PageHeader: React.FC = () => {
                   PROFILE
                 </Button>
               </Link>
-              <Link to="#">
+              <Link to={AppRoutes.home}>
                 <Button
                   className='button__header'
                   onClick={logoutHandler}

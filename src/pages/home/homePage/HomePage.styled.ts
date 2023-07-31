@@ -9,5 +9,6 @@ export const  HomePageStyled = styled.div`
     column-gap: 5px;
   }
 
+
 `;
 

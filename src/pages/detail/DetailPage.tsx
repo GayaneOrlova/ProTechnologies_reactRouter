@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import { Project } from "../../store/slices/projectSlice";
 import { getDetailCard } from '../../api/project.api';
+import { onFinishFailed } from '../../utils/error';
 import { DetailPageStyled } from './DetailPage.styled';
 import {Row, Col } from 'antd';
 import Card  from 'antd/es/card/Card';
@@ -27,6 +28,7 @@ const DetailCard: React.FC<Props> = () => {
       setProjectDetail(response.data);
       
     } catch (er) {
+      onFinishFailed();
       console.log(er);
     }
   }
