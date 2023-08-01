@@ -7,6 +7,7 @@ import {Button, Form, Input, message } from 'antd';
 import { CloseCircleOutlined } from "@ant-design/icons";
 import { AppRoutes } from "../../utils/router/constants";
 import { LoginStyled } from "./Login.styled";
+import { messagingOnError } from "../../utils/error";
 
 const Login = () => {
 
@@ -27,10 +28,6 @@ const Login = () => {
     setUserError(false)
   };
 
-  const onFinishFailed = () => {
-    message.error('Wrong email or password!');
-  };
-  
   const onLogin = async (value: {
     email: string;
     password: string;
@@ -42,7 +39,7 @@ const Login = () => {
       navigate ("/")
       
     } catch(er) {
-      onFinishFailed()
+      messagingOnError()
       setUserError(true)
       console.log(er);
     }

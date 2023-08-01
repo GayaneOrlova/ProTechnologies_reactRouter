@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import { Project } from "../../store/slices/projectSlice";
 import { getDetailCard } from '../../api/project.api';
-import { onFinishFailed } from '../../utils/error';
+import { messagingOnError } from '../../utils/error';
 import { DetailPageStyled } from './DetailPage.styled';
 import {Row, Col } from 'antd';
 import Card  from 'antd/es/card/Card';
@@ -22,13 +22,14 @@ const DetailCard: React.FC<Props> = () => {
   let { id } = useParams<QuizParams>();
 
   const fetchDetailCard = async () => {
+    if (!id) {return;}
+    
     try {
-      if (!id) return;
       const response = await getDetailCard(id);
       setProjectDetail(response.data);
       
     } catch (er) {
-      onFinishFailed();
+      messagingOnError();
       console.log(er);
     }
   }
@@ -37,7 +38,7 @@ const DetailCard: React.FC<Props> = () => {
       fetchDetailCard();
     }, [])
 
-    if (!projectDetail) {return null}
+    if (!projectDetail) {return null;}
     
     return (
     <DetailPageStyled>

@@ -27,10 +27,10 @@ const ProductCard: React.FC<Props> = (props) => {
             <Card
               cover={<img src={IMAGE_SRC} alt="ReactRedux" />}
               type="inner"
-              title="Project name:"
-              extra={<p>{props.project.title}</p>}
+              // title="Project name:"
+              extra={<p className="card__view-content">{props.project.title}</p>}
             >
-              <p>Technologies: {(props.project.technologies).join(", ")}</p>
+              <p className="card__view-content">Technologies: {(props.project.technologies).join(", ")}</p>
             </Card>
           </Card>
         </Space>

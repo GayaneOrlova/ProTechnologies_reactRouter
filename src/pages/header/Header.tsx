@@ -1,11 +1,19 @@
 import React from 'react';
+import {
+  UserOutlined,
+  LoginOutlined,
+  LogoutOutlined,
+  FileProtectOutlined,
+} from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom';
+import { Layout, Button } from 'antd';
+
 import { AppRoutes } from '../../utils/router/constants';
+
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { logout } from "../../store/slices/userSlice";
+
 import { HeaderStyled } from './Header.styled';
-import {Layout, Button } from 'antd';
-import { UserOutlined, LoginOutlined, LogoutOutlined, FileProtectOutlined } from '@ant-design/icons';
 
 const { Header } = Layout;
 

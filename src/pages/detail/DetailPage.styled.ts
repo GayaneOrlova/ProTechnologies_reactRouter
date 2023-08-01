@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const  DetailPageStyled = styled.div`
+  flex-grow: 1;
+
   .card {
     min-width: 500px;
     width: 500px;

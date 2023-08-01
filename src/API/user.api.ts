@@ -2,15 +2,14 @@ import { User } from "../store/slices/userSlice"
 import axios from './instance';
 
 type TokensResponseType = {
-  tokens: {
-    refresh: string;
-    access: string;
-  }
+  refresh: string;
+  access: string;
 }
 
 type LoginResponseType = {
   user: User;
-} & TokensResponseType;
+  tokens: TokensResponseType;
+};
 
 export const postUser = ({ email, password }: { email: string, password: string }) => {
   return axios.post<LoginResponseType>(`/login/`, { email, password })

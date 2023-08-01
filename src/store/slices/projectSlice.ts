@@ -52,9 +52,3 @@ export const projectSlice = createSlice({
   
   
   export default projectSlice.reducer;
-  
-  // "total": 100,
-  // "limit": 10,
-  // "offset": 0,
-  // "next": "https://api.example.com/items?page=2",
-  // "previous": null
