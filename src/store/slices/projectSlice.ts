@@ -8,16 +8,27 @@ export type Project = {
   body: string
 };
 
+export type Pagination = {
+  count: number,
+  next: string,
+  previous: string,
+  results: Project[],
+}
+
+
 type ProjectsSliceType = {
-  projectsList: Project[],
-  currentPage: number, //new
-  pages: number[], //NEW
+  pagination: Pagination,
+  currentPage: number,
 };
 
 const initialState: ProjectsSliceType = {
-  projectsList: [],
-  currentPage: 0, //new
-  pages: [],
+  pagination: {
+    count: 0,
+    next: '',
+    previous: '',
+    results: [],
+  },
+  currentPage: 1,
 };
 
 export const projectSlice = createSlice({
@@ -25,21 +36,25 @@ export const projectSlice = createSlice({
   initialState,
 
   reducers: {
-    addAllProjects(state, action: PayloadAction<Project[]>) {
-      state.projectsList = action.payload
+    setPagination(state, action: PayloadAction<Pagination>) {
+      state.pagination = action.payload;
     },
-    // new
     setCurrentPage(state, action: PayloadAction<number>) {
       state.currentPage = action.payload
-// new
     },
-  },
+  }
   });
   
   export const {
-    addAllProjects,
-    setCurrentPage, //new
+    setCurrentPage,
+    setPagination,
   } = projectSlice.actions;
   
   
   export default projectSlice.reducer;
+  
+  // "total": 100,
+  // "limit": 10,
+  // "offset": 0,
+  // "next": "https://api.example.com/items?page=2",
+  // "previous": null

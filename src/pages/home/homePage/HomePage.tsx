@@ -1,74 +1,63 @@
-import React, { useEffect, useState } from 'react';
-import { getAllProjects } from '../../../api/project.api';
-import { addAllProjects } from '../../../store/slices/projectSlice';
+import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { ProductCard } from '../cadrView/CardView';
 import { HomePageStyled } from './HomePage.styled';
+import { Pagination } from 'antd';
+import { setCurrentPage } from '../../../store/slices/projectSlice';
+import { getPage } from '../../../api/project.api';
+import { setPagination } from '../../../store/slices/projectSlice';
 import { onFinishFailed } from '../../../utils/error';
-import type { PaginationProps } from 'antd';
-
-// import { Pagination } from 'antd';
-// import {Pagination} from '../../pagination/Pagination'
-// import ReactPaginate from 'react-paginate';
-
-const ITEMS_PER_PAGES = 50;
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
-  const projectsList = useAppSelector((state) => state.projects.projectsList)
-  // const currentPage = useAppSelector((state) => state.projects.currentPage);//new
+  const paginationResults = useAppSelector((state) => state.projects.pagination.results)
+  const count = useAppSelector((state) => state.projects.pagination.count)
+  const currentPage = useAppSelector((state) => state.projects.currentPage)
 
-
-  const [page, setPage] = useState(1);//new
-
-  // const pageCount = 10;
-  // const pageChangeHandler = ({selected} : {selected: number}) => {
-  // }
-
-  
-
-
-  
-  const fetchAllProjects  = async () => {
+  const changePageHandler = async (page: number) => {
     try {
-      // const response = await getAllProjects(currentPage);//new
-      const response = await getAllProjects();//new
+      const offset = (page - 1) * 2;
+      const responce = await getPage(offset);
+      dispatch(setCurrentPage(page));
+      dispatch(setPagination(responce.data));
+      console.log(responce.data)
 
-      dispatch(addAllProjects(response.data))
-    } catch(er) {
+    } catch (er) {
       onFinishFailed();
       console.log(er);
     }
   }
 
   useEffect(() => {
-    fetchAllProjects();
+    changePageHandler(currentPage);
   }, [])
-
+  
+ 
   return (
     <HomePageStyled>
       <ul className="home__page">
-        {projectsList.map((project) => (
+        {paginationResults.map((project) => (
           <li key={project.id}>
             <ProductCard project={project}/>
           </li>
         ))}
       </ul>
-      {/* <Pagination></Pagination> */}
-      
-      {/* <Pagination showQuickJumper current={page} total={projectsList.length} pageSize = {4} onChange={setPage} /> */}
-
-      {/* <ReactPaginate
-        breakLabel="..."
-        nextLabel="next >"
-        onPageChange={pageChangeHandler}
-        pageRangeDisplayed={5}
-        pageCount={pageCount}
-        previousLabel="<"
-      /> */}
-      
+      <Pagination
+        defaultCurrent={1}
+        total={count}
+        defaultPageSize={2}
+        current={currentPage}
+        onChange={changePageHandler}
+      /> 
     </HomePageStyled>
   )
 }
 
 export { HomePage };
+
+
+
+// 1 - 0
+// 2 - 2
+// 3 - 4
+// 4 - 6

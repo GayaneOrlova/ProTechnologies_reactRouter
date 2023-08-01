@@ -9,20 +9,17 @@ import { HomePage } from './pages/home/homePage/HomePage';
 import { Login } from "./pages/login/Login";
 import { DetailCard } from "./pages/detail/DetailPage";
 import { PageFooter } from './pages/footer/Footer';
-import { onFinishFailed } from './utils/error';
-// import { Pages } from './pages/pagination/Pagination';
-    
-    // const token = localStorage.getItem('access');
-    // if(!token) {return}
     
 
 function App() {
   const [initialization, setInitialization] = useState(false);
   const dispatch = useAppDispatch()
-
+  const token = localStorage.getItem('access');
+  
   const fetchToken = async () => {
 
     try {
+      // if(!token) {return}
       const response = await getUser();
       const user = response.data;
       dispatch(setUser(user))
